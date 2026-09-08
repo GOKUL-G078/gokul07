@@ -1,8 +1,23 @@
-void bubble(int a[], int n);
-void selection(int a[], int n);
-void insertion(int a[], int n);
-void quick(int a[], int low, int high);
-void merge(int a[], int low, int high);
+#include <iostream>
+using namespace std;
 
-int linear(int a[], int n, int x);
-int binary(int a[], int n, int x);
+template <class T>
+class MyArray
+{
+    T a[100];
+    int n;
+
+public:
+    MyArray();
+
+    void create();
+    void insert_begin(T);
+    void insert_end(T);
+    void insert_pos(int, T);
+
+    void delete_begin();
+    void delete_end();
+    void delete_pos(int);
+
+    void display();
+};

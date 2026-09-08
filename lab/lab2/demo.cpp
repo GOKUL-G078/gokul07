@@ -1,67 +1,63 @@
-#include <iostream>
-#include "array.h"
-
-using namespace std;
+#include "array.cpp"
 
 int main()
 {
-    int a[100],n,ch,x,r;
+    MyArray<int> a;
 
-    cout<<"Enter n: ";
-    cin>>n;
+    int choice, x, p;
 
-    cout<<"Enter elements: ";
-    for(int i=0;i<n;i++)
-        cin>>a[i];
+    a.create();
 
-    cout<<"\n1 Bubble";
-    cout<<"\n2 Selection";
-    cout<<"\n3 Insertion";
-    cout<<"\n4 Quick";
-    cout<<"\n5 Merge";
-    cout<<"\n6 Linear Search";
-    cout<<"\n7 Binary Search";
-
-    cout<<"\nEnter choice: ";
-    cin>>ch;
-
-    if(ch==1) bubble(a,n);
-    else if(ch==2) selection(a,n);
-    else if(ch==3) insertion(a,n);
-    else if(ch==4) quick(a,0,n-1);
-    else if(ch==5) merge(a,0,n-1);
-
-    else if(ch==6)
+    do
     {
-        cout<<"Enter search element: ";
-        cin>>x;
+        cout << "\n1. Insert Beginning";
+        cout << "\n2. Insert Position";
+        cout << "\n3. Insert End";
+        cout << "\n4. Delete Beginning";
+        cout << "\n5. Delete Position";
+        cout << "\n6. Delete End";
+        cout << "\n7. Display";
+        cout << "\n8. Exit";
 
-        r=linear(a,n,x);
+        cout << "\nEnter choice: ";
+        cin >> choice;
 
-        if(r==-1) cout<<"Not found";
-        else cout<<"Found at "<<r+1;
+        switch(choice)
+        {
+            case 1:
+                cin >> x;
+                a.insert_begin(x);
+                break;
 
-        return 0;
-    }
+            case 2:
+                cin >> p >> x;
+                a.insert_pos(p, x);
+                break;
 
-    else if(ch==7)
-    {
-        bubble(a,n);
+            case 3:
+                cin >> x;
+                a.insert_end(x);
+                break;
 
-        cout<<"Enter search element: ";
-        cin>>x;
+            case 4:
+                a.delete_begin();
+                break;
 
-        r=binary(a,n,x);
+            case 5:
+                cin >> p;
+                a.delete_pos(p);
+                break;
 
-        if(r==-1) cout<<"Not found";
-        else cout<<"Found at "<<r+1;
+            case 6:
+                a.delete_end();
+                break;
 
-        return 0;
-    }
+            case 7:
+                a.display();
+                break;
+        }
 
-    cout<<"\nResult: ";
-    for(int i=0;i<n;i++)
-        cout<<a[i]<<" ";
+    } while(choice != 8);
 
     return 0;
 }
